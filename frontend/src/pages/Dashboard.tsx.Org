@@ -6,12 +6,11 @@ import { useDeviceWS } from "../hooks/useDeviceWS";
 export default function Dashboard() {
   const [page, setPage] = useState("devices");
   const [collapsed, setCollapsed] = useState(false);
-
-  // ★ useDeviceWS の返り値を分割代入する
-  const { devices, togglePump } = useDeviceWS();
+  const devices = useDeviceWS();
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
+      
       {/* サイドバー */}
       <div
         style={{
@@ -54,15 +53,12 @@ export default function Dashboard() {
 
       {/* メイン画面 */}
       <div style={{ flex: 1, padding: 40, overflowY: "auto" }}>
-        {page === "devices" && (
-          <DeviceTable devices={devices} togglePump={togglePump} />
-        )}
+        {page === "devices" && <DeviceTable devices={devices} />}
         {page === "chart" && <ChartView />}
       </div>
     </div>
   );
 }
-
 const btnStyle: React.CSSProperties = {
   padding: "10px 15px",
   background: "#444",
@@ -71,4 +67,3 @@ const btnStyle: React.CSSProperties = {
   cursor: "pointer",
   textAlign: "left"
 } as const;
-
