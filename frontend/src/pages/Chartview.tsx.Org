@@ -11,7 +11,7 @@ import {
 } from "recharts";
 
 export default function ChartView() {
-  const { devices } = useDeviceWS();   // ✔ 配列として受け取れる
+  const devices = useDeviceWS();
   const [history, setHistory] = useState<any[]>([]);
 
   useEffect(() => {
