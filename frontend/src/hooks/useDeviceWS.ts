@@ -6,14 +6,15 @@ export function useDeviceWS() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const now = new Date().toLocaleString();
+      const now = new Date().toISOString();
 
       const demoDevice: Device = {
-        deviceName: "Demo Device",
+        id: "demo-1",
+        name: "Demo Device",
         temperature: Number((22 + Math.random() * 10).toFixed(1)),
         humidity: Number((40 + Math.random() * 20).toFixed(1)),
-        pumpState: Math.random() > 0.5 ? "ON" : "OFF",
-        timestamp: now,
+        pump: Math.random() > 0.5, // boolean
+        updatedAt: now,
       };
 
       setDevices([demoDevice]);
