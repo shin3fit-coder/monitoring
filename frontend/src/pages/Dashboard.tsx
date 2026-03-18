@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DeviceTable from "../components/DeviceTable";
-import ChartView from "./Chartview";
+import ChartView from "./ChartView";
 import { useDeviceWS } from "../hooks/useDeviceWS";
 
 export default function Dashboard() {
@@ -55,7 +55,7 @@ export default function Dashboard() {
       {/* メイン画面 */}
       <div style={{ flex: 1, padding: 40, overflowY: "auto" }}>
         {page === "devices" && (
-          <DeviceTable devices={devices} togglePump={togglePump} />
+          <DeviceTable deviceList={devices} togglePump={togglePump} />
         )}
         {page === "chart" && <ChartView />}
       </div>

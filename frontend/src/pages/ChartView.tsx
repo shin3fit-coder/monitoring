@@ -11,25 +11,24 @@ import {
 } from "recharts";
 
 export default function ChartView() {
-  const { devices } = useDeviceWS();   // ✔ 配列として受け取れる
-  const [history, setHistory] = useState<any[]>([]);
+    const { devices: deviceList } = useDeviceWS();
+    const [history, setHistory] = useState<any[]>([]);
 
-  useEffect(() => {
-    if (devices.length === 0) return;
+    useEffect(() => {
+    if (deviceList.length === 0) return;
 
     const now = new Date().toLocaleTimeString();
 
     const newEntry = {
       time: now,
-      ...devices.reduce((acc: any, d: any) => {
+      ...deviceList.reduce((acc: any, d: any) => {
         acc[`temp_${d.id}`] = d.temperature;
         acc[`hum_${d.id}`] = d.humidity;
         return acc;
       }, {})
     };
-
     setHistory((prev) => [...prev.slice(-59), newEntry]);
-  }, [devices]);
+  }, [deviceList]);
 
   return (
     <div>
@@ -42,7 +41,7 @@ export default function ChartView() {
         <Tooltip />
         <Legend />
 
-        {devices.map((d) => (
+        {deviceList.map((d) => (
           <React.Fragment key={d.id}>
             <Line
               type="monotone"

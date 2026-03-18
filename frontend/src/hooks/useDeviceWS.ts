@@ -41,6 +41,6 @@ export function useDeviceWS() {
     return () => clearInterval(interval);
   }, []);
 
-  return { devices, togglePump };
+  return { devices, togglePump } as const;
 }
 

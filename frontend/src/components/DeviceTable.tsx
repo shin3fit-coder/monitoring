@@ -1,10 +1,10 @@
 import { Device } from "../types/device";
 
 function DeviceTable({
-  devices,
+  deviceList,
   togglePump,
 }: {
-  devices: Device[];
+  deviceList: Device[];
   togglePump: () => void;
 }) {
   const getRowColor = (d: Device) => {
@@ -46,7 +46,7 @@ function DeviceTable({
       </thead>
 
       <tbody>
-        {devices.map((d) => (
+        {deviceList.map((d) => (
           <tr key={d.id} style={{ background: getRowColor(d) }}>
             <td>{d.id}</td>
 
